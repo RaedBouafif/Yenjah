@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit  {
         this.search=localStorage.getItem("search")||""
         this.types=localStorage.getItem("typesPosts")?.split(",") ||[]
         this.filterData()
+        this.getPosts()
     })
   }
   types=localStorage.getItem("typesPosts")?.split(",") ||[]
@@ -38,13 +39,13 @@ export class HomeComponent implements OnInit  {
   getPosts(){
       this.loadingForPosts=true
       var idProfileIfExist=this.cookies.get("clid") ||  ""
+      this.types=this.types.filter((res:any)=>res!=="")
       var data=JSON.stringify(this.types);
       this.appService.getData(`/getInitPost.php?types=${data}&idProfile=${idProfileIfExist}`).then((res)=>{
-      this.usersData=res.data
-      console.log(res.data)
-      this.originData=res.data
-      this.loadingForPosts=false
-      this.filterData()
+        this.usersData=res.data
+        this.originData=res.data
+        this.loadingForPosts=false
+        this.filterData()
     })
   }
 }

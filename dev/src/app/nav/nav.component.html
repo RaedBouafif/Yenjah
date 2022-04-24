@@ -67,7 +67,7 @@
     </div>
 
     <div *ngIf="!isConnected" class="b-flex xl:b-w-4/12 lg:b-w-3/12 b-items-center b-justify-center b-space-x-14 xl:b-space-x-20 b-font-body b-font-semibold b-text-neutral-700 b-tracking-wider">
-        <a routerLink="login" class="hover:b-text-blue-700 hover:b-underline 
+        <a routerLink="login" class="hover:b-text-blue-700 b-text-center b-w-20 hover:b-underline 
                     b-underline-offset-2 b-delay-100 b-duration-200 b-decoration-blue-600 b-text-blue-600">
             Login</a>
         <a routerLink="sign_up" class="hover:b-text-blue-600 b-hidden lg:b-flex
@@ -75,7 +75,7 @@
             b-text-white b-bg-blue-600 b-border-blue-600
             b-py-1.5 b-px-6 b-rounded-sm">Sign</a>
     </div>
-    <div (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
+    <div *ngIf="isConnected" (click)="show_filter()" class="b-flex b-justify-center b-items-center lg:b-hidden b-w-20">
         <img *ngIf="isConnected&&showFilterNav" [src]="!showFilter ? '/assets/icons/filter.png' : '/assets/icons/x.png'" [class]="showFilter ?'b-w-7 b-h-7' : 'b-h-9 b-w-9'"/>
     </div>
     

@@ -1,5 +1,4 @@
-import { LiteralMapEntry } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { LocalStorageService } from '../local-storage-service.service';
 
