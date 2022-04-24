@@ -1,13 +1,12 @@
 <?php
 include_once "./infoServer.php";
-
     $conn = new PDO("mysql:host=" . $host . ";dbname=" . $dbName, $userName, $passWord);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     if(isset($_GET["types"])){
         $tab = json_decode($_GET["types"]);
         $data = array();
         for ($i=0 ; i < count($tab) ; $i++){
-            $req= $conn->query("SELECT idTypeSpecifique FROM decision WHERE type=$tab[$i]");
+            $req= $conn->query("SELECT idTypeSpecifique FROM typespecifique WHERE type=$tab[$i]");
             $idtypespecifique= $req->fetchColumn();
             $stmt1 = $conn->prepare("SELECT profile.username,profile.photo as
             profilePhoto,p.titre,p.text,p.dateCreate,p.idPost,p.objectif,p.imagePost,g.type as generalType,s.type as specificType
