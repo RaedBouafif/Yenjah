@@ -15,12 +15,11 @@ export class HomeComponent implements OnInit  {
     this.getPosts()
       this.locStorage.watchStorage().subscribe((data:string)=>{
         this.search=localStorage.getItem("search")||""
-        this.types=localStorage.getItem("typesPosts")!=null ?localStorage.getItem("typesPosts")?.split(",") : []
-        console.log(this.types)
+        this.types=localStorage.getItem("typesPosts")?.split(",") ||[]
         this.filterData()
     })
   }
-  types:any
+  types=localStorage.getItem("typesPosts")?.split(",") ||[]
   search=localStorage.getItem("search")||""
   loadingForPosts=false
   interval : any
@@ -39,8 +38,10 @@ export class HomeComponent implements OnInit  {
   getPosts(){
       this.loadingForPosts=true
       var idProfileIfExist=this.cookies.get("clid") ||  ""
-      this.appService.getData(`/getInitPost.php?types=${this.types}&idProfile=${idProfileIfExist}`).then((res)=>{
+      var data=JSON.stringify(this.types);
+      this.appService.getData(`/getInitPost.php?types=${data}&idProfile=${idProfileIfExist}`).then((res)=>{
       this.usersData=res.data
+      console.log(res.data)
       this.originData=res.data
       this.loadingForPosts=false
       this.filterData()

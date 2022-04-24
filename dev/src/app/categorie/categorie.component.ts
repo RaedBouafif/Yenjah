@@ -22,14 +22,21 @@ export class CategorieComponent implements OnInit {
       this.categories=res.data
     })
   }
-  types:string[]= []
+  types:string[]= localStorage.getItem("typesPosts")?.split(",") ||[]
   handleCheck(sous:string){
     var filter=this.types.filter((element : string)=>element===sous)
     filter.length===0 ? this.types.push(sous) : this.types=this.types.filter((element : string)=>element!==sous)
     this.locStorage.setItem("typesPosts",this.types)
   }
   verifyCheck(sous : string){
-    if(localStorage.getItem("typesPosts")?.indexOf(sous)!=-1) return true 
-    else return false
+    if(localStorage.getItem("typesPosts")!=null)
+    {
+      if(localStorage.getItem("typesPosts")?.indexOf(sous)!=-1) return true 
+      else return false
+    }
+    else 
+    {
+      return false
+    }
   }
 }

@@ -8,7 +8,6 @@
         <li *ngFor="let element of categories | keyvalue" class="b-w-full b-flex b-flex-col b-items-center b-justify-center">
             <div class="b-w-full b-text-md b-flex b-items-center b-justify-center b-font-semibold b-mb-4 b-py-1 b-border-t b-border-b b-border-neutral-400">
                 <label [for]="element.key" class="b-mx-auto">{{element.key}}</label>
-                <input type="checkbox" class="b-relative b-right-2" [id]="element.key" [name]="element.key" />
             </div>
             <div class="b-w-full b-flex b-flex-col b-items-end b-space-y-1">
                 <div class="b-flex b-items-center b-w-11/12 b-text-sm" *ngFor="let sous of element.value">
