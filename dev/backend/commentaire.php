@@ -3,7 +3,7 @@ include "./infoServer.php";
 if (isset($_POST["text"])){
     $idPost=$_POST["idPost"];
     $idProfile=$_POST["idProfile"];
-    $text=$_POST["idProfile"];
+    $text=$_POST["text"];
     try{
         $conn = new PDO("mysql:host=".$host.";dbname=".$dbName, $userName, $passWord);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -6,7 +6,7 @@ import axios from "axios";
 export class AppService {
 
   constructor() { }
-  url="http://localhost/yenjah.tn/dev/backend"
+  url="http://localhost/yenjah.tn/yenjah.tn/dev/backend"
   getData(pathUrl : string){
     return axios.get(this.url+pathUrl)
   }

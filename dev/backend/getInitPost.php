@@ -13,9 +13,13 @@ if (isset($_GET["types"])) {
         desc");
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $stmt = $connect->query("SELECT decision from decision where idProfile='$_GET[idProfile]' and idPost='$data[idPost]'");
+            $stmt2 = $connect->query("SELECT count(*) from decision where idPost='$data[idPost]'");
+            $nbrDesc = $stmt2->fetchColumn();
             $decision = $stmt->fetchColumn();
             if ($stmt->rowCount()) $data["decision"] = $decision;
             else $data["decision"] = "";
+            if ($stmt2->rowCount()) $data["nrbDecision"] = $nbrDesc;
+            else $data["nbrDecision"] = "";
             $result[] = $data;
         }
     } else {
@@ -30,9 +34,13 @@ if (isset($_GET["types"])) {
             $req->execute(array($idtypespecifique));
             while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
                 $stmt = $connect->query("SELECT decision from decision where idProfile='$_GET[idProfile]' and idPost='$data[idPost]'");
+                $stmt2 = $connect->query("SELECT count(*) from decision where idPost='$data[idPost]'");
+                $nbrDesc = $stmt2->fetchColumn();
                 $decision = $stmt->fetchColumn();
                 if ($stmt->rowCount()) $data["decision"] = $decision;
                 else $data["decision"] = "";
+                if ($stmt2->rowCount()) $data["nrbDecision"] = $nbrDesc;
+                else $data["nbrDecision"] = "";
                 $result[] = $data;
             }
         }
